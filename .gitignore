@@ -1,0 +1,16 @@
+# Project documentation & config (not code)
+CLAUDE.md
+docs/
+.claude/
+
+# Compiled binaries
+mingw-chooser.exe
+mingw-chooser
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
