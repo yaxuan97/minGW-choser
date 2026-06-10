@@ -4,12 +4,14 @@
     {
       "name": "mingw-builds",
       "api": "https://api.github.com/repos/niXman/mingw-builds-binaries/releases/latest",
-      "fallback_url": "https://github.com/niXman/mingw-builds-binaries/releases"
+      "fallback_url": "https://github.com/niXman/mingw-builds-binaries/releases",
+      "priority": 0
     },
     {
       "name": "winlibs",
       "api": "https://api.github.com/repos/brechtsanders/winlibs_mingw/releases/latest",
-      "fallback_url": "https://github.com/brechtsanders/winlibs_mingw/releases"
+      "fallback_url": "https://github.com/brechtsanders/winlibs_mingw/releases",
+      "priority": 10
     }
   ],
   "rules": {
@@ -33,7 +35,8 @@
       "thread": "posix",
       "exception": "seh",
       "crt": "ucrt",
-      "gcc": "14.2.0"
+      "gcc": "14.2.0",
+      "priority": 0
     },
     {
       "name": "x86_64-14.2.0-release-posix-seh-msvcrt-rt_v12-rev0.7z",
@@ -42,7 +45,8 @@
       "thread": "posix",
       "exception": "seh",
       "crt": "msvcrt",
-      "gcc": "14.2.0"
+      "gcc": "14.2.0",
+      "priority": 0
     },
     {
       "name": "x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev0.7z",
@@ -51,7 +55,8 @@
       "thread": "win32",
       "exception": "seh",
       "crt": "ucrt",
-      "gcc": "14.2.0"
+      "gcc": "14.2.0",
+      "priority": 0
     },
     {
       "name": "i686-14.2.0-release-posix-dwarf-ucrt-rt_v12-rev0.7z",
@@ -60,7 +65,8 @@
       "thread": "posix",
       "exception": "dwarf",
       "crt": "ucrt",
-      "gcc": "14.2.0"
+      "gcc": "14.2.0",
+      "priority": 0
     },
     {
       "name": "i686-14.2.0-release-posix-sjlj-ucrt-rt_v12-rev0.7z",
@@ -69,7 +75,8 @@
       "thread": "posix",
       "exception": "sjlj",
       "crt": "ucrt",
-      "gcc": "14.2.0"
+      "gcc": "14.2.0",
+      "priority": 0
     },
     {
       "name": "winlibs-x86_64-posix-seh-gcc-16.1.0-mingw-w64ucrt-14.0.0-r2.7z",
@@ -78,7 +85,8 @@
       "thread": "posix",
       "exception": "seh",
       "crt": "ucrt",
-      "gcc": "16.1.0"
+      "gcc": "16.1.0",
+      "priority": 10
     },
     {
       "name": "winlibs-x86_64-posix-seh-gcc-16.1.0-mingw-w64msvcrt-14.0.0-r2.7z",
@@ -87,7 +95,8 @@
       "thread": "posix",
       "exception": "seh",
       "crt": "msvcrt",
-      "gcc": "16.1.0"
+      "gcc": "16.1.0",
+      "priority": 10
     },
     {
       "name": "winlibs-i686-posix-dwarf-gcc-16.1.0-mingw-w64ucrt-14.0.0-r2.7z",
@@ -96,7 +105,8 @@
       "thread": "posix",
       "exception": "dwarf",
       "crt": "ucrt",
-      "gcc": "16.1.0"
+      "gcc": "16.1.0",
+      "priority": 10
     },
     {
       "name": "winlibs-i686-posix-dwarf-gcc-16.1.0-mingw-w64msvcrt-14.0.0-r2.7z",
@@ -105,7 +115,8 @@
       "thread": "posix",
       "exception": "dwarf",
       "crt": "msvcrt",
-      "gcc": "16.1.0"
+      "gcc": "16.1.0",
+      "priority": 10
     }
   ]
 }

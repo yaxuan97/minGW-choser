@@ -51,6 +51,10 @@ func main() {
 				fmt.Fprintf(os.Stderr, "warning: failed to fetch %s: %v\n", src.Name, err)
 				continue
 			}
+			// Tag builds with source priority for tiebreaking.
+			for i := range fetched {
+				fetched[i].Priority = src.Priority
+			}
 			builds = append(builds, fetched...)
 		}
 		if len(builds) == 0 {

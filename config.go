@@ -20,6 +20,7 @@ type sourceConfig struct {
 	Name        string `json:"name"`
 	API         string `json:"api"`
 	FallbackURL string `json:"fallback_url"`
+	Priority    int    `json:"priority"`
 }
 
 func loadConfig() (configFile, error) {

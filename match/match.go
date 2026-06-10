@@ -44,12 +44,15 @@ func Match(targetArch string, builds []Build, rules Rules, overrides Overrides) 
 		scoredCandidates = append(scoredCandidates, scored{Build: b, Score: s})
 	}
 
-	// Sort by score desc, then GCC version desc (tiebreaker).
+	// Sort by score desc, then GCC version desc, then source priority desc (tiebreaker).
 	sort.Slice(scoredCandidates, func(i, j int) bool {
 		if scoredCandidates[i].Score != scoredCandidates[j].Score {
 			return scoredCandidates[i].Score > scoredCandidates[j].Score
 		}
-		return compareGCC(scoredCandidates[i].Build.GCC, scoredCandidates[j].Build.GCC) > 0
+		if c := compareGCC(scoredCandidates[i].Build.GCC, scoredCandidates[j].Build.GCC); c != 0 {
+			return c > 0
+		}
+		return scoredCandidates[i].Build.Priority > scoredCandidates[j].Build.Priority
 	})
 
 	best := scoredCandidates[0]
