@@ -1,6 +1,7 @@
 package output
 
 import (
+	"fmt"
 	"io"
 	"mingw-chooser/detect"
 	"mingw-chooser/match"
@@ -27,5 +28,15 @@ type Flags struct {
 
 // PrintResult writes the match result to w in the requested format.
 func PrintResult(w io.Writer, sys detect.SystemInfo, r match.MatchResult, f Format, flags Flags) error {
-	return nil
+	switch f {
+	case FormatJSON:
+		return printJSON(w, sys, r, flags)
+	default:
+		return printText(w, sys, r, flags)
+	}
+}
+
+// printJSON placeholder — implemented in next task.
+func printJSON(w io.Writer, sys detect.SystemInfo, r match.MatchResult, flags Flags) error {
+	return fmt.Errorf("JSON output not yet implemented")
 }
