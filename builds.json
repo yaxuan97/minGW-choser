@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "name": "mingw-builds",
+      "api": "https://api.github.com/repos/niXman/mingw-builds-binaries/releases/latest",
+      "fallback_url": "https://github.com/niXman/mingw-builds-binaries/releases"
+    }
+  ],
+  "rules": {
+    "arch_map": {
+      "amd64": "x86_64",
+      "386": "i686",
+      "arm64": "aarch64"
+    },
+    "thread_preference": ["posix", "win32"],
+    "exception_preference": {
+      "x86_64": ["seh", "sjlj", "dwarf"],
+      "i686": ["dwarf", "sjlj"]
+    },
+    "crt_preference": ["ucrt", "msvcrt"]
+  },
+  "fallback_builds": [
+    {
+      "name": "x86_64-14.2.0-release-posix-seh-ucrt-rt_v12-rev0.7z",
+      "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev0/x86_64-14.2.0-release-posix-seh-ucrt-rt_v12-rev0.7z",
+      "arch": "x86_64",
+      "thread": "posix",
+      "exception": "seh",
+      "crt": "ucrt"
+    },
+    {
+      "name": "x86_64-14.2.0-release-posix-seh-msvcrt-rt_v12-rev0.7z",
+      "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev0/x86_64-14.2.0-release-posix-seh-msvcrt-rt_v12-rev0.7z",
+      "arch": "x86_64",
+      "thread": "posix",
+      "exception": "seh",
+      "crt": "msvcrt"
+    },
+    {
+      "name": "x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev0.7z",
+      "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev0/x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev0.7z",
+      "arch": "x86_64",
+      "thread": "win32",
+      "exception": "seh",
+      "crt": "ucrt"
+    },
+    {
+      "name": "i686-14.2.0-release-posix-dwarf-ucrt-rt_v12-rev0.7z",
+      "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev0/i686-14.2.0-release-posix-dwarf-ucrt-rt_v12-rev0.7z",
+      "arch": "i686",
+      "thread": "posix",
+      "exception": "dwarf",
+      "crt": "ucrt"
+    },
+    {
+      "name": "i686-14.2.0-release-posix-sjlj-ucrt-rt_v12-rev0.7z",
+      "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev0/i686-14.2.0-release-posix-sjlj-ucrt-rt_v12-rev0.7z",
+      "arch": "i686",
+      "thread": "posix",
+      "exception": "sjlj",
+      "crt": "ucrt"
+    }
+  ]
+}
