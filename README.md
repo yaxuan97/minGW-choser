@@ -2,6 +2,8 @@
 
 [中文版](README.zh-CN.md)
 
+> **⚠️ This project is under active development.** The core functionality works, but APIs, flags, and output formats may change before v1.0. Feedback and contributions are welcome!
+
 A cross-platform CLI tool that detects your system and recommends the best MinGW-w64 build to download. No more confusion between i686 vs x86_64, posix vs win32, seh vs dwarf vs sjlj, ucrt vs msvcrt.
 
 ## Quick Start
@@ -143,6 +145,37 @@ mingw-chooser/
 ├── match/               Scoring engine + tests
 └── output/              Text & JSON formatters
 ```
+
+## Contributing
+
+Contributions are welcome! Here's how to get started:
+
+1. **Fork** the repository and clone it locally
+2. **Create a branch** for your change (`git checkout -b feat/my-feature`)
+3. **Make your changes** — follow existing code style and add tests
+4. **Run the test suite** — `go test ./...` must pass
+5. **Commit** with a [conventional commit](https://www.conventionalcommits.org/) message
+6. **Open a pull request** with a clear description of what you changed and why
+
+### What to Work On
+
+- **New sources** — add MSYS2, LLVM-MinGW, or other MinGW distributions to `builds.json` and `fetch/`
+- **New platforms** — improve detection for niche environments (Cygwin, MSYS2, WSL)
+- **Better recommendations** — tune scoring rules in `builds.json` based on real-world experience
+- **Shell completions** — write bash/zsh/fish completion scripts
+- **One-click install** — add a `--download` flag to download and extract the recommended build
+- **GUI wrapper** — build a desktop frontend that consumes `--json` output
+
+### Development Setup
+
+```bash
+git clone https://github.com/yourusername/mingw-chooser.git
+cd mingw-chooser
+go test ./...        # verify everything passes
+go build .           # build the binary
+```
+
+See [CLAUDE.md](CLAUDE.md) for detailed architecture and design decisions.
 
 ## License
 
