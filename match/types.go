@@ -28,6 +28,14 @@ type DimensionChoice struct {
 	Manual    bool   `json:"manual"`
 }
 
+// Overrides carries user-supplied flags that replace auto-detected preferences.
+type Overrides struct {
+	Arch      string
+	Thread    string
+	Exception string
+	CRT       string
+}
+
 // MatchResult holds the best build, alternatives, and explanations.
 type MatchResult struct {
 	Build        Build             `json:"build"`
