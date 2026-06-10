@@ -4,6 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"mingw-chooser/detect"
+	"mingw-chooser/fetch"
+	"mingw-chooser/match"
+	"mingw-chooser/output"
 )
 
 const version = "0.1.0"
@@ -24,12 +28,68 @@ func main() {
 		os.Exit(0)
 	}
 
-	_ = archFlag
-	_ = threadFlag
-	_ = excFlag
-	_ = crtFlag
-	_ = jsonFlag
-	_ = offlineFlag
-	_ = listFlag
-	fmt.Println("TODO: implement")
+	// Load embedded config.
+	cfg, err := loadConfig()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: failed to load config: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Detect system.
+	sys := detect.Detect()
+
+	// Get builds: fetch from API, or use fallback.
+	var builds []match.Build
+	var usedFallback bool
+	if *offlineFlag {
+		builds = cfg.FallbackBuilds
+		usedFallback = true
+	} else {
+		for _, src := range cfg.Sources {
+			fetched, err := fetch.Fetch(src.API)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "warning: failed to fetch %s: %v\n", src.Name, err)
+				continue
+			}
+			builds = append(builds, fetched...)
+		}
+		if len(builds) == 0 {
+			builds = cfg.FallbackBuilds
+			usedFallback = true
+			if len(cfg.Sources) > 0 {
+				fmt.Fprintf(os.Stderr, "warning: using embedded build snapshot — visit %s for latest\n",
+					cfg.Sources[0].FallbackURL)
+			}
+		}
+	}
+
+	// Match.
+	overrides := match.Overrides{
+		Arch:      *archFlag,
+		Thread:    *threadFlag,
+		Exception: *excFlag,
+		CRT:       *crtFlag,
+	}
+	result := match.Match(sys.Arch, builds, cfg.Rules, overrides)
+
+	// Output.
+	outFlags := output.Flags{
+		Arch:      *archFlag,
+		Thread:    *threadFlag,
+		Exception: *excFlag,
+		CRT:       *crtFlag,
+		Offline:   usedFallback,
+		JSON:      *jsonFlag,
+		List:      *listFlag,
+	}
+
+	format := output.FormatText
+	if *jsonFlag {
+		format = output.FormatJSON
+	}
+
+	if err := output.PrintResult(os.Stdout, sys, result, format, outFlags); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
 }
