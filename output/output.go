@@ -1,7 +1,6 @@
 package output
 
 import (
-	"fmt"
 	"io"
 	"mingw-chooser/detect"
 	"mingw-chooser/match"
@@ -34,9 +33,4 @@ func PrintResult(w io.Writer, sys detect.SystemInfo, r match.MatchResult, f Form
 	default:
 		return printText(w, sys, r, flags)
 	}
-}
-
-// printJSON placeholder — implemented in next task.
-func printJSON(w io.Writer, sys detect.SystemInfo, r match.MatchResult, flags Flags) error {
-	return fmt.Errorf("JSON output not yet implemented")
 }
