@@ -175,7 +175,7 @@ go test ./...        # verify everything passes
 go build .           # build the binary
 ```
 
-See [CLAUDE.md](CLAUDE.md) for detailed architecture and design decisions.
+See [DEVELOPMENT.md](DEVELOPMENT.md) for detailed architecture, design decisions, and development workflow.
 
 ## License
 

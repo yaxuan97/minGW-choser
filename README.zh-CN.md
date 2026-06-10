@@ -184,7 +184,7 @@ go test ./...        # 验证所有测试通过
 go build .           # 构建二进制
 ```
 
-详细架构和设计决策参见 [CLAUDE.md](CLAUDE.md)。
+详细架构、设计决策和开发流程参见 [DEVELOPMENT.md](DEVELOPMENT.md)。
 
 ## 许可证
 
